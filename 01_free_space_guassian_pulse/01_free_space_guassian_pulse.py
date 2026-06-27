@@ -12,52 +12,19 @@ import numpy as np
 # configuring libraries
 matplotlib.use('Agg') #Non-interactive backend - required for WSL
 
-'''
-Any MEEP script follows the same structure.
-1. Define your simulation parameters
-2. Define your Source
-3. Define Boundary Conditions
-4. Build the simulation Object
-5. Define your detector
-6. Run the simulation
-'''
-
 #-------------------------------------
 #   1. Defining Simulation Parameters
 #-------------------------------------
-'''
-For any MEEP simulation, two parameters are of utmost importance.
-1. Resolution: Number of pixels per unit length
-2. Cell Size: The size of our simulation domain 
-'''
 
 # Defining resolution
-'''
-The unit length is arbitrary in MEEP, i.e, we define what 1 unit is.
-By default it is in micro meters.
-Higher the resolution, clearer the output, but slower the process.
-'''
 resolution=2
 
 # Defining Cell Size
-'''
-The MEEP method Vector3(x,y,z) takes three parameters for each of the principle axices.
-Since we are performing 1D simulation, only x exists.
-'''
 cell_size=mp.Vector3(16,0,0)    # 16 units long in x direction, 0 in y and z directions
 
 #---------------------------
 #  2.  Defining the Source
 #---------------------------
-'''
-Defining a guassian source involves definiting its center frequency and bandwidth.
-Frequency in MEEP is a distance dependant quantity.
-1 unit of frequency = c/distance_unit
-In this case,
-    frequency,1 = c/1um = 300 THz
-
-We are operating in infrared region.
-'''
 fc = 1.0
 fwidth = 0.5
 
@@ -77,11 +44,6 @@ sources=[
 #-----------------------------------
 #   3. Defining Boundary Condition
 #-----------------------------------
-'''
-Define the Characteristics of the boundaries of the defined cell.
-PML = Perfectly Matched Layer
-PML is an absorbing boundary, meaning, No reflection or reraction. 
-'''
 pml_layers=[mp.PML(thickness=1.0)]
 
 #---------------------------------------
@@ -98,9 +60,7 @@ sim = mp.Simulation(
 #--------------------------------
 #   5. Setting up the detector
 #--------------------------------
-'''
-Detectors are places to monitor a certain field component through the simulation time.
-'''
+
 #   Defining detector'sposition
 detector_position = mp.Vector3(5,0,0)
 
