@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+
+# Conda
+.env
+.conda
+
+# VS Code
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Output files
+*.h5
+*.pdf
+
+# macOS/Linux
+.DS_Store
