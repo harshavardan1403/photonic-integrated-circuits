@@ -138,6 +138,8 @@ System-level analysis combining MEEP simulation results with Python post-process
 - Miniconda or Anaconda
 - Git
 
+Open **WSL** Terminal and perform the following
+
 ### Install MEEP via Conda
 
 ```bash
@@ -149,7 +151,7 @@ pip install matplotlib numpy
 ### Run Any Simulation
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/photonic-integrated-circuits.git
+git clone https://github.com/harshavardan1403/photonic-integrated-circuits.git
 cd photonic-integrated-circuits/00_em_fundamentals/01_free_space_gaussian_pulse
 python 01_free_space_gaussian_pulse.py
 ```
@@ -187,7 +189,7 @@ Transitioning into photonic integrated circuit design and photonic signal proces
 
 Long-term direction: photonic neuromorphic computing.
 
-[LinkedIn](https://linkedin.com/in/YOUR_PROFILE) · [GitHub](https://github.com/YOUR_USERNAME)
+[LinkedIn](https://linkedin.com/in/harshavardan1403) · [GitHub](https://github.com/harshavardan1403)
 
 ---
 
