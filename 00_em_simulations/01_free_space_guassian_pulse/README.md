@@ -1,6 +1,6 @@
-# Session 1: Guassian Pulse in Free Space
+# Session 1: Gaussian Pulse in Free Space
 
-**Goal:** Simulate a guassian pule in 1D Free space using MEEP
+**Goal:** Simulate a gaussian pulse in 1D Free space using MEEP
 
 ## MEEP Script Structure
 Any MEEP script follows the same structure.
@@ -11,18 +11,16 @@ Any MEEP script follows the same structure.
 5. Define your `detector` and `detection function`
 6. Run the simulation
 
-## Script Explainantion
+## Script Explaination
 Import neccessary libraries
 ```
 import meep as mp
 import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 ```
-Configuring matplot lib with non-interactive backend to work efficiently with WSL
-```
-matplotlib.use('Agg')
-```
+Configuring matplot lib with non-interactive backend to work efficiently with WSL. 
 
 ### Defining Simulation Parameters
 
@@ -43,7 +41,7 @@ Since we are performing 1D simulation, only x has a non-zero value.
 ### Defining the Source
 
 
-Defining a guassian source involves definiting its center frequency and bandwidth.  
+Defining a gaussian source involves definiting its center frequency and bandwidth.  
 
 Frequency in MEEP is a distance dependant quantity.  
 1 unit of `frequency = c/distance_unit`  
