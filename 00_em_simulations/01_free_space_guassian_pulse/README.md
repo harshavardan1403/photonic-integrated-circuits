@@ -88,7 +88,7 @@ The `mp.Source` method takes three parameters:
 - *field_component*: The field component of the E or F field to be excited as per source_type.
 - *source_position*: Position of source inside the simulation cell.
 
-`Note:` Frequency in MEEP is expressed as `c/distance_unit`. With 1 unit = 1 µm,  frequency 1.0 = c/1um = 300 THz. In this case, we are operating in *infra red* region. 
+`Note:` Frequency in MEEP is expressed as `c/distance_unit`. With 1 unit = 1 µm,  frequency 1.0 = c/1µm = 300 THz. In this case, we are operating in *infra red* region. 
 
 ### Defining Boundary Condition
 
@@ -181,7 +181,7 @@ print("Plot saved as session1_output.png")
 print("Open it in VS Code's file explorer or use: explorer.exe session1_output.png")
 ```
 
-
+---
 ## Observations
 #### Bandwidth
 The time response for increase or decrease in `fwidth` is monitored by the *Time-Bandwidth Product*.  
@@ -193,3 +193,12 @@ When the position of source/detector is moved closer or away from the detector/s
 
 #### Sampling Time
 When the sampling time in `mp.at_every()` method in reduced, the output becomes smoother in time. This can be seen in [session01_output_s.png](outputs/session01_output_s.png)
+
+#### Resolution
+At `resolution = 2`, the pulse arrives late and appears distorted. This is **Numerical dispersion** and does not hold any physical meaning.
+
+---
+## Key Parameters
+| Parameter | Value | Physical Meaning |
+| ------- | ------- | ------- |
+| `resolution` | 16 | 16 grid points per µm |
