@@ -202,3 +202,9 @@ At `resolution = 2`, the pulse arrives late and appears distorted. This is **Num
 | Parameter | Value | Physical Meaning |
 | ------- | ------- | ------- |
 | `resolution` | 16 | 16 grid points per µm |
+| `cell_size` | (16,0,0) | 16 µm x 1D domain |
+| `fc` | 1.0 | 300 THz, near-infrared |
+| `fwidth` | 0.5 | Pulse bandwidth |
+| Source position | (-5,0,0) | 3 µm from left PML |
+| Detector position | (+5,0,0) | 3 µm from right PML|
+| PML thickness | 1.0 | 1 µm absorbing boundary|
