@@ -12,7 +12,7 @@ A gaussian pulse has a defined center frequency and a finite bandwidth. It helps
 
 --- 
 ## Output
-![Output Image](00_em_simulations/01_free_space_guassian_pulse/outputs/session01_output.png)
+![Output Image](outputs/session01_output.png)
 
 The plot shows Ez field as a function of simulation time. The bell shaped envelope is the gaussian pulse measured at a detector position (x=+5). The oscillations within the envelope represent the electric field cycles at 300 THz.
 
