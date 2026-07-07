@@ -184,7 +184,7 @@ print("Open it in VS Code's file explorer or use: explorer.exe session1_output.p
 ---
 ## Observations
 #### Bandwidth
-The time response for increase or decrease in `fwidth` is monitored by the *Time-Bandwidth Product*.  
+The time response for increase or decrease in `fwidth` is governed by the *Time-Bandwidth Product*.  
 - When the bandwidth is increased, the time response narrowed. This can be seen in [session01_output_n.png](outputs/session01_output_n.png). This output was observed for a `fwidth = 1.0`.
 - When the bandwidth is decreased, the time response widens. This can be seen in [session01_output_w.png](outputs/session01_output_w.png) and [session01_output_w1.png](outputs/session01_output_w1.png). This output was observed for `fwidth = 0.1`.
 
