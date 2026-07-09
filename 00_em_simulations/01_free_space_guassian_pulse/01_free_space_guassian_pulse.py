@@ -1,9 +1,9 @@
 '''
-Session 01: Implementation of guassian pulse in free space
-SImulation: Guassian Pulse propagation in a 1D free space
+Session 01: Implementation of gaussian pulse in free space
+SImulation: Gaussian Pulse propagation in a 1D free space
 Author: K. S. Harshavardan
 '''
-#importing neccessary libraries
+#importing necessary libraries
 import meep as mp
 import matplotlib
 import matplotlib.pyplot as plt
@@ -30,7 +30,7 @@ fwidth = 0.5
 
 sources=[
     mp.Source(                  # creating source object
-        mp.GaussianSource(      # A Guassian Pulse Source
+        mp.GaussianSource(      # A Gaussian Pulse Source
             frequency = fc,     # Center Frequency
             fwidth = fwidth     # Bandwidth of the pulse
         ),
@@ -61,7 +61,7 @@ sim = mp.Simulation(
 #   5. Setting up the detector
 #--------------------------------
 
-#   Defining detector'sposition
+#   Defining detector's position
 detector_position = mp.Vector3(5,0,0)
 
 # Defining an array to store monitored value
@@ -86,7 +86,7 @@ sim.run(
 print("Simulation Completed")
 
 #-------------------------------
-#   7. Visualising the result
+#   7. Visualizing the result
 #-------------------------------
 
 # Unpacking field component and time
