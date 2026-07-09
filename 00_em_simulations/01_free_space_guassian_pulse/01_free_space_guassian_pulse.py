@@ -6,11 +6,9 @@ Author: K. S. Harshavardan
 #importing necessary libraries
 import meep as mp
 import matplotlib
+matplotlib.use('Agg') #Non-interactive backend - required for WSL
 import matplotlib.pyplot as plt
 import numpy as np
-
-# configuring libraries
-matplotlib.use('Agg') #Non-interactive backend - required for WSL
 
 #-------------------------------------
 #   1. Defining Simulation Parameters
