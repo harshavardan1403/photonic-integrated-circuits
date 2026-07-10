@@ -104,10 +104,10 @@ print("\nSimulation Completed")
 #---------------------
 
 refl_time = np.array([t for t,_ in reflection_data])
-refl_ez = np.array([ez for _,ez in reflection_data])
+refl_ez = np.real(np.array([ez for _,ez in reflection_data]))
 
 trans_time = np.array([t for t,_ in transmission_data])
-trans_ez = np.array([ez for _,ez in transmission_data])
+trans_ez = np.real(np.array([ez for _,ez in transmission_data]))
 
 #----------------------
 #   Plotting Results
