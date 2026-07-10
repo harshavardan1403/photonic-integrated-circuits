@@ -51,7 +51,7 @@ cell_size=mp.Vector3(16,0,0)
 ```
 The unit length is arbitrary in MEEP, i.e, we define what 1 unit is. By default it is in **micro meters**. The MEEP method Vector3(x,y,z) takes three parameters for each of the principle axises. Since we are performing 1D simulation, only x has a non-zero value.  We defined the 1D cell with length along x=16. Hence, the cell spans from (-8,0,0) to (8,0,0).
 
-Resolution controls the fitness of spatial grid. The rule of thumb is:
+Resolution controls the fitness of spatial grid. The rule of thumb for vacuum domain is:
 ```
 resolution >= 8 x center_frequency      (minimum)
 resolution = 16 x center_frequency      (standard)
