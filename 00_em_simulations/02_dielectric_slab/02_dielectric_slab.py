@@ -79,11 +79,11 @@ transmission_data = []
 
 def record_reflection(sim):
     ez = sim.get_field_point(mp.Ez, reflection_detector)
-    reflection_data.append((mp.meep_time,ez))
+    reflection_data.append( (sim.meep_time(),ez) )
 
 def record_transmission(sim):
     ez=sim.get_field_point(mp.Ez,transmission_detector)
-    transmission_data.append( (mp.meep_time, ez) )
+    transmission_data.append( (sim.meep_time(), ez) )
 
 #------------------------
 #   Run the Simulation
@@ -113,7 +113,7 @@ trans_ez = np.array([ez for _,ez in transmission_data])
 #   Plotting Results
 #----------------------
 
-fig, (ax1,ax2) = plt.subplot(2, 1, figsize=(12,18))
+fig, (ax1,ax2) = plt.subplots(2,1,figsize=(12,8))
 
 #--------------Reflection Plot------------------#
 ax1.plot(refl_time, refl_ez, color="steelblue", linewidth=1.2)
