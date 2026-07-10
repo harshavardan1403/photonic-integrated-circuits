@@ -133,4 +133,4 @@ ax2.grid(True, alpha=0.3)
 
 plt.tight_layout()
 plt.savefig("outputs\s02_op.png", dpi=300)
-print("\nPlot Saved to Outputs directory")
+print("\nOutput Plot Saved to Outputs directory")
