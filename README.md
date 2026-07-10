@@ -50,8 +50,8 @@ Core electromagnetic wave behavior simulated in MIT MEEP before any photonic str
 
 | # | Simulation | Physics Demonstrated | Status |
 |---|-----------|---------------------|--------|
-| 01 | [Free Space Gaussian Pulse](./00_em_fundamentals/01_free_space_gaussian_pulse/) | Time-bandwidth product · PML boundaries · field monitoring · FDTD timestep stability | ✅ Complete |
-| 02 | [Dielectric Slab — Transmission and Reflection](./00_em_fundamentals/02_dielectric_slab/) | Fresnel equations · partial reflection · phase velocity · refractive index | ✅ Complete |
+| 01 | [Free Space Gaussian Pulse](00_em_fundamentals/01_free_space_gaussian_pulse/) | Time-bandwidth product · PML boundaries · field monitoring · FDTD timestep stability | ✅ Complete |
+| 02 | [Dielectric Slab — Transmission and Reflection](00_em_fundamentals/02_dielectric_slab/) | Fresnel equations · partial reflection · phase velocity · refractive index | ✅ Complete |
 | 03 | Standing Wave in a 1D Cavity | Resonance condition · nodes and antinodes · boundary-driven interference | ⬜ Planned |
 | 04 | Pulse Propagation in a Dispersive Medium | Group velocity vs phase velocity · pulse broadening · material dispersion | ⬜ Planned |
 | 05 | Flux Spectrum Analysis | Fourier decomposition in MEEP · transmission spectra · flux monitor workflow | ⬜ Planned |
