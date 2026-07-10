@@ -35,7 +35,7 @@ r = (1.0-1.5)/(1.0+1.5) = -0.5/2.5 = -0.2
 R=r^2
 R = 0.04 = 4%
 ```
-Hence, after the first reflection, only 60% power enters the slab. After the second reflection, 36% power reaches the transmission detector. 
+Hence, after the first reflection, only 96% power enters the slab. After the second reflection, 92.16% power reaches the transmission detector. 
 
 ---
 ## MEEP Script Structure  
@@ -129,6 +129,7 @@ sim = mp.Simulation(
 ```
 
 ###  Defining Detectors
+Since we are simulating the behavior of gaussian pulse in a dielectric slab, both transmitted and reflected fields are to be monitored.  
 
 ```
 reflection_detector = mp.Vector3(-6,0,0)
@@ -148,6 +149,7 @@ def record_transmission(sim):
 
 ###  Run the Simulation
 To run the simulation, we use the `run()` method and call the `at_every()` method to record the field component as per our detector function.
+
 ```
 print("\n Starting the Simulation")
 
@@ -164,10 +166,10 @@ print("\nSimulation Completed")
 
 ```
 refl_time = np.array([t for t,_ in reflection_data])
-refl_ez = np.array([ez for _,ez in reflection_data])
+refl_ez = np.real(np.array([ez for _,ez in reflection_data]))
 
 trans_time = np.array([t for t,_ in transmission_data])
-trans_ez = np.array([ez for _,ez in transmission_data])
+trans_ez = np.real(np.array([ez for _,ez in transmission_data]))
 ```
 
 ###  Plotting Results
@@ -197,6 +199,14 @@ print("\nOutput Plot Saved to Outputs directory")
 ```
 
 ---
+## Observations
+### Epsilon
+Increasing epsilon the of material to `12.25` makes the slab act like a _**Si** slab_ (n = 3.5).  
+This implements the following changes as observed in [s02_op_Si.png](outputs/s02_op_Si.png).  
+- The reflected power is increased as the fresnel coefficient is `-0.556`.  
+- The pulse is delayed more at the slab, than [s02_op.png](outputs/s02_op.png) due to higher refractive index.
+
+---
 ## Key Parameters
 | Parameter | Value | Physical Meaning |
 | ------- | ------- | ------- |
@@ -204,7 +214,7 @@ print("\nOutput Plot Saved to Outputs directory")
 | `cell_size` | (20,0,0) | 20 µm x 1D domain |
 | `fc` | 1.0 | 300 THz, near-infrared |
 | `fwidth` | 0.5 | Pulse bandwidth |
-| Source position | (-7,0,0) | 2 µm from left PML |
-| Reflection Detector position | (-6,0,0) | 4 µm from right PML|
-| Transmission Detector position | (+6,0,0) | 4 µm from right PML|
 | PML thickness | 1.0 | 1 µm absorbing boundary|
+| Source position | (-7,0,0) | 2 µm from left PML |
+| Reflection Detector position | (-6,0,0) | 3 µm from left PML|
+| Transmission Detector position | (+6,0,0) | 3 µm from right PML|
