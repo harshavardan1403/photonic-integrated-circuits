@@ -28,7 +28,7 @@ Any MEEP script follows the same structure.
 
 ---
 ## Script Explanation
-Import necessary libraries
+### Import necessary libraries
 ```
 import meep as mp
 import matplotlib
