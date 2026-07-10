@@ -41,105 +41,96 @@ fwidth = 0.5
 
 sources = [
     mp.Source(
-        src=mp.GaussianSource(frequency=fc, fwidth=fwidth),
-        component=mp.Ez,
-        center=mp.Vector3(-7, 0, 0)
+        mp.GaussianSource(
+            frequency = fc,
+            fwidth = fwidth
+        ),
+        component = mp.Ez,
+        center = mp.Vector3(-7, 0, 0)
     )
 ]
 
-# ─────────────────────────────────────────────
-# SECTION 4: BOUNDARY CONDITIONS
-# ─────────────────────────────────────────────
+#--------------------------------
+#   Defining Boundary Condition
+#--------------------------------
+pml_layers=[mp.PML(thickness = 1.0)]
 
-pml_layers = [mp.PML(thickness=1.0)]    # Absorbing boundaries on both ends
-
-# ─────────────────────────────────────────────
-# SECTION 5: BUILD SIMULATION OBJECT
-# ─────────────────────────────────────────────
+#-------------------------------
+#   Defining Simulation Object
+#-------------------------------
 
 sim = mp.Simulation(
-    cell_size=cell_size,
-    boundary_layers=pml_layers,
-    sources=sources,
-    geometry=geometry,          # This is new compared to Session 1
-    resolution=resolution
+    cell_size = cell_size,
+    boundary_layers = pml_layers,
+    sources = sources,
+    geometry = geometry,
+    resolution = resolution
 )
 
-# ─────────────────────────────────────────────
-# SECTION 6: DETECTORS
-# ─────────────────────────────────────────────
+#------------------------
+#   Defining Detectors
+#------------------------
 
-# Two detectors this time:
-# 1. Reflection detector — placed BETWEEN source and slab
-#    It will record both the incident pulse (going right) AND
-#    the reflected pulse (coming back left) superimposed.
-#    The reflected pulse arrives AFTER the incident pulse,
-#    so they are separated in time and clearly distinguishable.
-
-# 2. Transmission detector — placed AFTER the slab
-#    Records only the transmitted pulse.
-#    Compare its arrival time to Session 1 to see the slab-induced delay.
-
-reflection_detector = mp.Vector3(-6, 0, 0)     # x = -6, left of slab
-transmission_detector = mp.Vector3(6, 0, 0)    # x = +6, right of slab
+reflection_detector = mp.Vector3(-6,0,0)
+transmission_detector = mp.Vector3(6,0,0)
 
 reflection_data = []
 transmission_data = []
 
 def record_reflection(sim):
     ez = sim.get_field_point(mp.Ez, reflection_detector)
-    reflection_data.append((sim.meep_time(), ez))
+    reflection_data.append((mp.meep_time,ez))
 
 def record_transmission(sim):
-    ez = sim.get_field_point(mp.Ez, transmission_detector)
-    transmission_data.append((sim.meep_time(), ez))
+    ez=sim.get_field_point(mp.Ez,transmission_detector)
+    transmission_data.append( (mp.meep_time, ez) )
 
-# ─────────────────────────────────────────────
-# SECTION 7: RUN THE SIMULATION
-# ─────────────────────────────────────────────
+#------------------------
+#   Run the Simulation
+#------------------------
 
-print("\nStarting Simulation...")
+print("\n Starting the Simulation")
 
 sim.run(
-    mp.at_every(0.1, record_reflection),
-    mp.at_every(0.1, record_transmission),
-    until=60
+    mp.at_every(0.1,record_reflection),
+    mp.at_every(0.1,record_transmission),
+    until = 60
 )
 
-print("Simulation Complete.")
+print("\nSimulation Completed")
 
-# ─────────────────────────────────────────────
-# SECTION 8: EXTRACT DATA
-# ─────────────────────────────────────────────
+#---------------------
+#   Extracting Data
+#---------------------
 
-refl_times = np.array([t for t, _ in reflection_data])
-refl_ez    = np.real(np.array([e for _, e in reflection_data]))
+refl_time = np.array([t for t,_ in reflection_data])
+refl_ez = np.array([ez for _,ez in reflection_data])
 
-tran_times = np.array([t for t, _ in transmission_data])
-tran_ez    = np.real(np.array([e for _, e in transmission_data]))
+trans_time = np.array([t for t,_ in transmission_data])
+trans_ez = np.array([ez for _,ez in transmission_data])
 
-# ─────────────────────────────────────────────
-# SECTION 9: PLOT RESULTS
-# ─────────────────────────────────────────────
+#----------------------
+#   Plotting Results
+#----------------------
 
-fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 8))
+fig, (ax1,ax2) = plt.subplot(2, 1, figsize=(12,18))
 
-# --- Top plot: Reflection detector ---
-ax1.plot(refl_times, refl_ez, color='steelblue', linewidth=1.2)
-ax1.axhline(0, color='gray', linewidth=0.8, linestyle='--')
-ax1.set_xlabel("Time (MEEP units)", fontsize=12)
-ax1.set_ylabel("Ez amplitude", fontsize=12)
-ax1.set_title("Reflection Detector (x = −6)\nIncident pulse + reflected pulse", fontsize=13)
+#--------------Reflection Plot------------------#
+ax1.plot(refl_time, refl_ez, color="steelblue", linewidth=1.2)
+ax1.axhline(0, color="gray", linewidth=0.8, linestyle='--')
+ax1.set_xlabel('Time (MEEP units)', fontsize=12)
+ax1.set_ylabel('Ez Amplitude', fontsize=12)
+ax1.set_title('Reflection Detector',fontsize=13)
 ax1.grid(True, alpha=0.3)
 
-# --- Bottom plot: Transmission detector ---
-ax2.plot(tran_times, tran_ez, color='darkorange', linewidth=1.2)
-ax2.axhline(0, color='gray', linewidth=0.8, linestyle='--')
-ax2.set_xlabel("Time (MEEP units)", fontsize=12)
-ax2.set_ylabel("Ez amplitude", fontsize=12)
-ax2.set_title("Transmission Detector (x = +6)\nTransmitted pulse — delayed by optical path through slab", fontsize=13)
+#--------------Transmission Plot------------------#
+ax2.plot(trans_time, trans_ez, color="darkorange", linewidth=1.2)
+ax2.axhline(0, color="gray", linewidth=0.8, linestyle='--')
+ax2.set_xlabel('Time (MEEP units)', fontsize=12)
+ax2.set_ylabel('Ez Amplitude', fontsize=12)
+ax2.set_title('Transmission Detector', fontsize=13)
 ax2.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig("outputs/session02_output.png", dpi=300)
-print("Plot saved as outputs/session02_output.png")
+plt.savefig("outputs\s02_op.png", dpi=300)
+print("\nPlot Saved to Outputs directory")
