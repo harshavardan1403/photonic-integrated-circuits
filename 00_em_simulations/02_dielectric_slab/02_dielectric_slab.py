@@ -132,5 +132,5 @@ ax2.set_title('Transmission Detector', fontsize=13)
 ax2.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig("outputs\s02_op.png", dpi=300)
+plt.savefig("s02_op.png", dpi=300)
 print("\nOutput Plot Saved to Outputs directory")
