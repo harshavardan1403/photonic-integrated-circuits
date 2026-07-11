@@ -201,9 +201,22 @@ print("\nOutput Plot Saved to Outputs directory")
 ---
 ## Observations
 ### Epsilon
-Increasing epsilon the of material to `12.25` makes the slab act like a _**Si** slab_ (n = 3.5).  
-This implements the following changes as observed in [s02_op_Si.png](outputs/s02_op_Si.png).  
-- The reflected power is increased as the fresnel coefficient is `-0.556`.  
+Increasing epsilon the of material to `12.25` makes the slab act as a _**Si** slab_ (n = 3.5).  
+![Si Output Image](outputs/s02_op_Si.png)
+
+The following pulses can be observed in the graph:
+- Reflection detector,
+    - `first` - incident pulse from the source
+    - `second` - reflection of `first` while entering the slab
+    - `third` - reflection of the `first` while leaving the slab
+    - `fourth` - reflection of the reflection of `third` while leaving the slab
+- Transmission Detector,
+    - `first` - transmission of the incident pulse from the source
+    - `second` - transmission of the reflection of `third` reflection
+    - `third` - transmission of the reflection of `fourth` reflection  
+
+These changes are observed in [s02_op_Si.png](outputs/s02_op_Si.png) due to the following reasons:  
+- The reflected power is increased as the fresnel loss percentage is `30.8%`.  
 - The pulse is delayed more at the slab, than [s02_op.png](outputs/s02_op.png) due to higher refractive index.
 
 ---
